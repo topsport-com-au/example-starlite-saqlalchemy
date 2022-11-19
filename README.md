@@ -15,6 +15,12 @@ Example API built on [starlite-saqlalchemy](https://topsport-com-au.github.io/st
 
 `$ poetry run run-app`
 
+## Development
+
+Install dev dependencies:
+
+`$ python -m pip install -r dev.requirements.txt`
+
 ## Test
 
 `$ tox`
