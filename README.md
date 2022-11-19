@@ -13,7 +13,7 @@ Example API built on [starlite-saqlalchemy](https://topsport-com-au.github.io/st
 
 ## Run
 
-`$ run-app`
+`$ poetry run run-app`
 
 ## Test
 
