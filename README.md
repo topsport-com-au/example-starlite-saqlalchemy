@@ -21,20 +21,20 @@ Install dev dependencies:
 
 `$ python -m pip install -r dev.requirements.txt`
 
-## Test
+### Test
 
 `$ tox`
 
-## Migrations
+### Migrations
 
-### Ensure the database service is up
+#### Ensure the database service is up
 
 `$ docker-compose up -d`
 
-### Revision
+#### Revision
 
 `$ poetry run alembic revision --autogenerate -m "revision description"`
 
-### Migration
+#### Migration
 
 `$ poetry run alembic upgrade head`
