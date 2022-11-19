@@ -2,7 +2,7 @@
 
 <img src="https://www.topsport.com.au/assets/images/logo_pulse.svg" width="200"/>
 
-Example API built on [starlite-saqlalchemy][https://topsport-com-au.github.io/starlite-saqlalchemy/latest/]
+Example API built on [starlite-saqlalchemy](https://topsport-com-au.github.io/starlite-saqlalchemy/latest/)
 
 ## Setup
 
