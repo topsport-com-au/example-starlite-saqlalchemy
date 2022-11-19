@@ -1,0 +1,40 @@
+site_name: example-starlite-saqlalchemy
+repo_url: https://github.com/topsport-com-au/example-starlite-saqlalchemy
+nav:
+  - index.md
+  - writing docs:
+      - docs/welcome.md
+      - docs/examples.md
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.top
+    - navigation.expand
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - search.share
+markdown_extensions:
+  - admonition
+  - meta
+  - toc:
+      permalink: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - tables
+plugins:
+  - search

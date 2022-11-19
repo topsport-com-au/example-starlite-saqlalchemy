@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - cache:/data
+
+  db:
+    image: postgres:latest
+    volumes:
+      - db:/var/lib/postrgresql/data/
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: example-starlite-saqlalchemy
+
+volumes:
+  cache: {}
+  db: {}

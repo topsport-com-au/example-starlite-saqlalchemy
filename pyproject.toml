@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "example-starlite-saqlalchemy"
+version = "0.1.0"
+description = "Example starlite-saqlalchemy application"
+authors = ["peter <peter.github@proton.me>"]
+packages = [
+    { include = "app", from = "src" },
+    { include = "controllers", from = "src" },
+    { include = "domain", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python = "==3.11"
+alembic = "*"
+starlite-saqlalchemy = "~=0.12"
+
+[tool.poetry.scripts]
+run-app = "starlite_saqlalchemy.scripts:run_app"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 100
+
+[tool.isort]
+profile = "black"
+
+[tool.pytest.ini_options]
+addopts = ["-ra", "--strict-config"]
+asyncio_mode = "auto"
+env_files = ["tests.env"]
+testpaths = ["tests/unit"]
