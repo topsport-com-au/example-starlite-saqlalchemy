@@ -2,7 +2,7 @@
 
 <img src="https://www.topsport.com.au/assets/images/logo_pulse.svg" width="200"/>
 
-Example API built on [starlite-saqlalchemy][https://topsport-com-au.github.io/starlite-saqlalchemy/latest/]
+Example API built on [starlite-saqlalchemy](https://topsport-com-au.github.io/starlite-saqlalchemy/latest/)
 
 ## Setup
 
@@ -13,22 +13,28 @@ Example API built on [starlite-saqlalchemy][https://topsport-com-au.github.io/st
 
 ## Run
 
-`$ run-app`
+`$ poetry run run-app`
 
-## Test
+## Development
+
+Install dev dependencies:
+
+`$ python -m pip install -r dev.requirements.txt`
+
+### Test
 
 `$ tox`
 
-## Migrations
+### Migrations
 
-### Ensure the database service is up
+#### Ensure the database service is up
 
 `$ docker-compose up -d`
 
-### Revision
+#### Revision
 
 `$ poetry run alembic revision --autogenerate -m "revision description"`
 
-### Migration
+#### Migration
 
 `$ poetry run alembic upgrade head`
