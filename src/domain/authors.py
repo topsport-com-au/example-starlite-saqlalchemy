@@ -6,7 +6,7 @@ from datetime import date  # noqa: TC003
 from typing import TYPE_CHECKING
 
 from sqlalchemy.orm import Mapped  # noqa: TC002
-from starlite_saqlalchemy import db, dto, service
+from starlite_saqlalchemy import db, dto, repository, service
 from structlog.contextvars import bind_contextvars
 
 if TYPE_CHECKING:
@@ -20,8 +20,16 @@ class Author(db.orm.Base):  # pylint: disable=too-few-public-methods
     dob: Mapped[date]
 
 
+class Repository(repository.sqlalchemy.SQLAlchemyRepository[Author]):
+    """Author repository."""
+
+    model_type = Author
+
+
 class Service(service.Service[Author]):
     """Author service object."""
+
+    repository_type = Repository
 
     async def create(self, data: Author) -> Author:
         created = await super().create(data)

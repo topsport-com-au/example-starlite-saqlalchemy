@@ -1,4 +1,6 @@
 """Controllers for authors domain."""
+from __future__ import annotations
+
 from uuid import UUID
 
 from sqlalchemy.ext.asyncio import AsyncSession

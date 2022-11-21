@@ -5,7 +5,7 @@ from uuid import UUID  # noqa: TC003
 
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from starlite_saqlalchemy import db, dto, service
+from starlite_saqlalchemy import db, dto, repository, service
 
 from domain.authors import Author  # noqa: TC002
 
@@ -20,7 +20,17 @@ class Book(db.orm.Base):  # pylint: disable=too-few-public-methods
     )
 
 
-Service = service.Service[Book]
+class Repository(repository.sqlalchemy.SQLAlchemyRepository[Book]):
+    """Book repository."""
+
+    model_type = Book
+
+
+class Service(service.Service[Book]):
+    """Book service."""
+
+    repository_type = Repository
+
 
 ReadDTO = dto.factory("BookReadDTO", Book, purpose=dto.Purpose.READ)
 """

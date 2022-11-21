@@ -1,10 +1,13 @@
 """Controllers for books domain."""
+from __future__ import annotations
+
 from uuid import UUID
 
 from sqlalchemy.ext.asyncio import AsyncSession
-from starlite import Dependency, Provide, Router, delete, get, post, put
+from starlite import Dependency, Parameter, Provide, Router, delete, get, post, put
 from starlite.status_codes import HTTP_200_OK
-from starlite_saqlalchemy.repository.types import CollectionFilter, FilterTypes
+from starlite_saqlalchemy.repository.filters import CollectionFilter
+from starlite_saqlalchemy.repository.types import FilterTypes
 
 from domain.books import Book, ReadDTO, Service, WriteDTO
 
@@ -19,8 +22,8 @@ def provides_service(db_session: AsyncSession) -> Service:
 @get()
 async def get_books(
     service: Service,
+    author_ids: list[UUID] | None = Parameter(default=None, query="author"),
     filters: list[FilterTypes] = Dependency(skip_validation=True),
-    author_ids: list[UUID] | None = Dependency(),
 ) -> list[ReadDTO]:
     """Get a list of books."""
     if author_ids:
