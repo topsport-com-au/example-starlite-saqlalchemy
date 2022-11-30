@@ -11,7 +11,7 @@ from typing import TYPE_CHECKING
 from starlite import Starlite
 from starlite_saqlalchemy import ConfigureApp, settings
 
-from controllers import authors, books
+from app.controllers import authors, books
 
 if TYPE_CHECKING:
     from typing import Any

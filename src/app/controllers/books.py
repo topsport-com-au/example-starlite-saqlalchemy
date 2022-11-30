@@ -9,7 +9,7 @@ from starlite.status_codes import HTTP_200_OK
 from starlite_saqlalchemy.repository.filters import CollectionFilter
 from starlite_saqlalchemy.repository.types import FilterTypes
 
-from domain.books import Book, ReadDTO, Service, WriteDTO
+from domain.books import ReadDTO, Service, WriteDTO
 
 DETAIL_ROUTE = "/{book_id:uuid}"
 
@@ -34,7 +34,7 @@ async def get_books(
 @post()
 async def create_book(data: WriteDTO, service: Service) -> ReadDTO:
     """Create a `Book`."""
-    return ReadDTO.from_orm(await service.create(Book.from_dto(data)))
+    return ReadDTO.from_orm(await service.create(data.to_mapped()))
 
 
 @get(DETAIL_ROUTE)
@@ -46,7 +46,7 @@ async def get_book(service: Service, book_id: UUID) -> ReadDTO:
 @put(DETAIL_ROUTE)
 async def update_book(data: WriteDTO, service: Service, book_id: UUID) -> ReadDTO:
     """Update a book."""
-    return ReadDTO.from_orm(await service.update(book_id, Book.from_dto(data)))
+    return ReadDTO.from_orm(await service.update(book_id, data.to_mapped()))
 
 
 @delete(DETAIL_ROUTE, status_code=HTTP_200_OK)

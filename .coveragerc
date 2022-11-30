@@ -4,7 +4,6 @@ omit =
     tests/*
 source =
     app
-    controllers
     domain
 
 [report]

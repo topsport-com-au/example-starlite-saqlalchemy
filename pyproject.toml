@@ -5,14 +5,14 @@ description = "Example starlite-saqlalchemy application"
 authors = ["peter <peter.github@proton.me>"]
 packages = [
     { include = "app", from = "src" },
-    { include = "controllers", from = "src" },
     { include = "domain", from = "src" },
 ]
 
 [tool.poetry.dependencies]
 python = "==3.11"
 alembic = "*"
-starlite-saqlalchemy = "~=0.12"
+starlite-saqlalchemy = "~=0.14"
+# starlite-saqlalchemy = {path = "../starlite-saqlalchemy", develop = true}
 
 [tool.poetry.scripts]
 run-app = "starlite_saqlalchemy.scripts:run_app"

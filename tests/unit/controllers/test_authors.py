@@ -8,7 +8,7 @@ from unittest.mock import ANY, AsyncMock, MagicMock
 from starlite.status_codes import HTTP_200_OK, HTTP_201_CREATED
 from starlite_saqlalchemy.db import async_session_factory
 
-import controllers
+import app
 import domain.authors
 
 if TYPE_CHECKING:
@@ -19,9 +19,9 @@ if TYPE_CHECKING:
 def test_service_provider(monkeypatch: MonkeyPatch) -> None:
     """Test service dependency provider."""
     service_mock = MagicMock()
-    monkeypatch.setattr(controllers.authors, "Service", service_mock)
+    monkeypatch.setattr(app.controllers.authors, "Service", service_mock)
     session = async_session_factory()
-    controllers.authors.provides_service(session)
+    app.controllers.authors.provides_service(session)
     service_mock.assert_called_once_with(session=session)
 
 

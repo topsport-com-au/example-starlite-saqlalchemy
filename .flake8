@@ -3,5 +3,5 @@ exclude = alembic
 max-line-length = 100
 ignore = E,W,B008
 per-file-ignores =
-    src/controllers/*:TC
+    src/app/controllers/*:TC
     tests/*:PT013,SCS108

@@ -28,7 +28,7 @@ async def test_service_create_enqueues_background_task(
     """Test ensures that creating an author enqueues the async callback."""
     mock = AsyncMock()
     monkeypatch.setattr(service, "enqueue_background_task", mock)
-    author = await service.create(authors.Author.from_dto(authors.CreateDTO(**raw_author)))
+    author = await service.create(authors.WriteDTO(**raw_author).to_mapped())
     mock.assert_called_once_with(
         "receive_created_author", raw_author=authors.ReadDTO.from_orm(author).dict()
     )

@@ -11,7 +11,6 @@ from domain import authors
 
 if TYPE_CHECKING:
     from typing import Any
-    from uuid import UUID
 
     from pytest import MonkeyPatch
 
@@ -28,10 +27,6 @@ def _patch_worker(monkeypatch: MonkeyPatch) -> None:
 
 @pytest.fixture(autouse=True)
 def _author_repository(raw_authors: list[dict[str, Any]], monkeypatch: pytest.MonkeyPatch) -> None:
-    AuthorRepository = GenericMockRepository[authors.Author]
-    collection: dict[UUID, authors.Author] = {}
-    for raw_author in raw_authors:
-        author = authors.Author(**raw_author)
-        collection[getattr(author, AuthorRepository.id_attribute)] = author
-    monkeypatch.setattr(AuthorRepository, "collection", collection)
-    monkeypatch.setattr(authors.Service, "repository_type", AuthorRepository)
+    repo = GenericMockRepository[authors.Author]
+    repo.seed_collection([authors.Author(**raw_author) for raw_author in raw_authors])
+    monkeypatch.setattr(authors.Service, "repository_type", repo)

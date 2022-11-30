@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import asyncio
 from datetime import date  # noqa: TC003
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Annotated
 
 from sqlalchemy.orm import Mapped  # noqa: TC002
 from starlite_saqlalchemy import db, dto, repository, service
@@ -49,15 +49,12 @@ class Service(service.Service[Author]):
         await asyncio.sleep(0.5)
 
 
-CreateDTO = dto.factory("AuthorCreateDTO", Author, purpose=dto.Purpose.WRITE, exclude={"id"})
+WriteDTO = dto.FromMapped[Annotated[Author, "write"]]
 """
-A pydantic model to validate `Author` creation data.
+A pydantic model to validate `Author` create/update data.
 """
-ReadDTO = dto.factory("AuthorReadDTO", Author, purpose=dto.Purpose.READ)
+
+ReadDTO = dto.FromMapped[Annotated[Author, "read"]]
 """
 A pydantic model to serialize outbound `Author` representations.
-"""
-UpdateDTO = dto.factory("AuthorUpdateDTO", Author, purpose=dto.Purpose.WRITE)
-"""
-A pydantic model to validate and deserialize `Author` update data.
 """
