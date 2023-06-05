@@ -9,7 +9,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "==3.11"
+python = "~=3.11.1"
 alembic = "*"
 starlite-saqlalchemy = "~=0.14"
 # starlite-saqlalchemy = {path = "../starlite-saqlalchemy", develop = true}
